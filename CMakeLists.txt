@@ -18,10 +18,18 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Create header-only library
 add_library(packet_info INTERFACE)
+target_sources(packet_info INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include/packet_info/packet_info.h)
 target_include_directories(
 	packet_info INTERFACE
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
+)
+
+# Create groups in the IDE which mirrors directory structure on the hard disk
+get_target_property(packet_info_sources packet_info SOURCES)
+source_group(
+  TREE   ${CMAKE_CURRENT_SOURCE_DIR}/include
+  FILES  ${packet_info}
 )
 
 # Things typically only needed if we are the top level project

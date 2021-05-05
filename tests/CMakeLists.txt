@@ -17,9 +17,12 @@ FetchContent_MakeAvailable(googletest)
 
 FetchContent_Declare(ndt
 	GIT_REPOSITORY https://github.com/rokoDev/ndt.git
-	GIT_TAG c65a7b38593079a56f166fe42f6134aa2dffd4a4)
+	GIT_TAG 5692eca5e2870f1dedff7833c22d3cf32b92f7ac)
 
 FetchContent_MakeAvailable(ndt)
+
+# If use IDE add ndt target into deps group
+set_target_properties(ndt PROPERTIES FOLDER deps)
 
 if (WIN32)
 	option(CMAKE_USE_WIN32_THREADS_INIT "using WIN32 threads" ON)
@@ -48,4 +51,4 @@ package_add_test(${ProjectName}
 	)
 
 # If use IDE add gtest, gmock, gtest_main and gmock_main targets into deps/googletest group
-# set_target_properties(gtest gmock gtest_main gmock_main PROPERTIES FOLDER deps/googletest)
+set_target_properties(gtest gmock gtest_main gmock_main PROPERTIES FOLDER deps/googletest)
